@@ -28,5 +28,5 @@ stages:
               command: 'buildAndPush'
               Dockerfile: '**/Dockerfile.multistage'
               tags: |
-                $(Build.SourceBranchName)
+                $(Build.BuildNumber)
                 latest
