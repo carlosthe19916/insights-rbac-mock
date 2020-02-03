@@ -30,9 +30,15 @@ stages:
               tags: |
                 $(Build.BuildNumber)
                 latest
+          - task: CmdLine@2
+            inputs:
+              script: |
+                docker images
+                docker tag carlosthe19916/insights-rbac-mock:latest quay.io/carlosthe19916/insights-rbac-mock:latest
+                docker tag carlosthe19916/insights-rbac-mock:$(Build.BuildNumber) quay.io/carlosthe19916/insights-rbac-mock:$(Build.BuildNumber)
           - task: Docker@2
             inputs:
-              containerRegistry: 'DockerHub'
+              containerRegistry: 'Quay.io'
               repository: 'carlosthe19916/insights-rbac-mock'
               command: 'push'
               tags: |
@@ -40,7 +46,7 @@ stages:
                 latest
           - task: Docker@2
             inputs:
-              containerRegistry: 'Quay.io'
+              containerRegistry: 'DockerHub'
               repository: 'carlosthe19916/insights-rbac-mock'
               command: 'push'
               tags: |
