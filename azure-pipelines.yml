@@ -26,7 +26,7 @@ stages:
               containerRegistry: 'DockerHub'
               repository: 'carlosthe19916/insights-rbac-mock'
               command: 'buildAndPush'
-              Dockerfile: '**/src/main/docker/Dockerfile.multistage'
+              Dockerfile: '**/Dockerfile.multistage'
               tags: |
                 $(Build.SourceBranchName)
                 latest
