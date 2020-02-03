@@ -25,8 +25,16 @@ stages:
             inputs:
               containerRegistry: 'DockerHub'
               repository: 'carlosthe19916/insights-rbac-mock'
-              command: 'buildAndPush'
+              command: 'build'
               Dockerfile: '**/Dockerfile.multistage'
+              tags: |
+                $(Build.BuildNumber)
+                latest
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'DockerHub'
+              repository: 'carlosthe19916/insights-rbac-mock'
+              command: 'push'
               tags: |
                 $(Build.BuildNumber)
                 latest
@@ -34,8 +42,7 @@ stages:
             inputs:
               containerRegistry: 'Quay.io'
               repository: 'carlosthe19916/insights-rbac-mock'
-              command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile.multistage'
+              command: 'push'
               tags: |
                 $(Build.BuildNumber)
                 latest
