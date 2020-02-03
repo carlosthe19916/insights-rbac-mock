@@ -30,3 +30,12 @@ stages:
               tags: |
                 $(Build.BuildNumber)
                 latest
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'Quay.io'
+              repository: 'carlosthe19916/insights-rbac-mock'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile.multistage'
+              tags: |
+                $(Build.BuildNumber)
+                latest
